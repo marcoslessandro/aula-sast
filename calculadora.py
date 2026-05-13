@@ -1,15 +1,14 @@
 def main():
     soma = 0
+    # CORRECAO: Ler como string e tratar manualmente de forma segura
+    entrada = input("Digite numeros separados por virgula: ")
+    numeros_str = entrada.split(',')
     try:
-        # VULNERABILIDADE: eval() avalia a string inteira
-        numeros = eval(input("Digite numeros separados por virgula: "))
-    except Exception:
-        print("Erro: entrada invalida")
-        return
-
-    for num in numeros:
-        soma += num
-    print(f"Soma = {soma}")
+        for num_str in numeros_str:
+            soma += int(num_str.strip())
+        print(f"Soma = {soma}")
+    except ValueError:
+        print("Erro: digite apenas numeros inteiros validos.")
 
 if __name__ == '__main__':
     main()
